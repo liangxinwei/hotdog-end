@@ -29,7 +29,10 @@ new Sequelize({
     acquire: 30000,
     idle: 10000,
   },
-  operatorsAliases: false,
+  define: {
+    timestamps: false
+  },
+  // operatorsAliases: false,
   logging: true,
 });
 

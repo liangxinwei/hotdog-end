@@ -7,10 +7,7 @@ import UserInfo from '../../models/user/user-info';
  * 创建一个新的用户
  */
 async function createUser({name, gender}: UserData) {
-  return (await UserInfo.create({
-    name,
-    gender,
-  })).save();
+  return (await UserInfo.create({name, gender})).save();
 }
 
 @JsonController('/add')

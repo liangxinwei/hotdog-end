@@ -10,7 +10,7 @@
     "watch-node": "NODE_ENV=local nodemon dist/server.js",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
-    "tslint": "tslint -c .eslintrc -p tsconfig.json",
+    "tslint": "tslint -c .eslintrc.js -p tsconfig.json",
     "copy-static-assets": "ts-node copy-static-assets.ts",
     "test": "mocha -r ts-node/register test/**/*.spec.ts"
   },
@@ -34,7 +34,7 @@
     "mysql2": "^1.6.5",
     "reflect-metadata": "^0.1.13",
     "routing-controllers": "^0.7.7",
-    "sequelize": "^5.15.1",
+    "sequelize": "^5.21.5",
     "sequelize-typescript": "^0.6.11"
   },
   "devDependencies": {

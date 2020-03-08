@@ -1,7 +1,9 @@
 import {Model, Table, Column} from 'sequelize-typescript';
 
+// @ts-ignore
 @Table({
   tableName: 'user_info_test',
+  timestamps: false,
 })
 export default class UserInfo extends Model<UserInfo> {
   @Column({
