@@ -6,8 +6,8 @@ import path from 'path';
 export default class {
   @Get('/')
   async router() {
-    return cons.ejs(path.resolve(__dirname, '../../views/index.ejs'), {
-      title: 'Example For TypeScript React App',
+    return cons.ejs(path.resolve(__dirname, '../views/home'), {
+      title: 'Example For TypeScript Node.js',
     });
   }
 }

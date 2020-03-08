@@ -35,7 +35,8 @@
     "reflect-metadata": "^0.1.13",
     "routing-controllers": "^0.7.7",
     "sequelize": "^5.21.5",
-    "sequelize-typescript": "^0.6.11"
+    "sequelize-typescript": "^0.6.11",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
