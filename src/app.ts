@@ -5,6 +5,7 @@ import {Sequelize} from 'sequelize-typescript';
 // import serve from 'koa-static';
 // import views from 'koa-views';
 import bodyParser from 'koa-bodyparser';
+// import logger from './utils/logger';
 import {MysqlConfig} from 'config';
 import {configs} from './config';
 
@@ -35,10 +36,12 @@ new Sequelize({
     idle: 10000,
   },
   define: {
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true
   },
   // operatorsAliases: false,
-  logging: true,
+  // logging: logger.info,
+  logging: console.log,
 });
 
 export default app;
