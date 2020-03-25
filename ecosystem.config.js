@@ -6,6 +6,9 @@ module.exports = {
       // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
       args: 'one two',
       instances: 1,
+      output: 'logs/out.log',
+      error: 'logs/error.log',
+      log: 'logs/combined.outerr.log',
       autorestart: true,
       watch: false,
       // eslint-disable-next-line @typescript-eslint/camelcase
@@ -23,15 +26,12 @@ module.exports = {
   deploy: {
     production: {
       user: 'root',
-      host: [
-        {
-          host: '111.229.70.117',
-          port: 5000
-        }
-      ],
+      host: '111.229.70.117',
+      port: '22',
       ref: 'origin/master',
       repo: 'https://github.com/liangxinwei/hotdog-backend.git',
       path: '/data/hotdog_backend',
+      'ssh_options': 'StrictHostKeyChecking=no',
       'post-deploy': 'npm install && pm2 reload ecosystem.config.js --env production'
     }
   }

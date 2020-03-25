@@ -7,11 +7,12 @@
     "start": "NODE_ENV=local npm run serve",
     "build": "npm run build-ts && npm run copy-static-assets",
     "serve": "node dist/server.js",
-    "deploy": "pm2 deploy production",
     "watch-node": "NODE_ENV=local nodemon dist/server.js",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
     "tslint": "tslint -c .eslintrc.js -p tsconfig.json",
+    "pm2init": "pm2 deploy ecosystem.config.js production setup",
+    "deploy": "pm2 deploy production",
     "copy-static-assets": "ts-node copy-static-assets.ts",
     "test": "mocha -r ts-node/register test/**/*.spec.ts"
   },
