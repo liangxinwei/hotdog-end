@@ -4,7 +4,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import {host, port} from '../conf';
 import {Gender} from '../../src/config';
-import UserInfo from '../../src/models/user/user-info';
+import User from '../../src/models/user/user';
 
 chai.use(chaiHttp);
 const should = chai.should();
@@ -21,7 +21,7 @@ describe('filter list with female', () => {
         expect(res.body).to.have.property('code');
         expect(res.body.code).to.equal(200);
         expect(res.body.data).to.be.a('array');
-        expect(res.body.data.filter((item: UserInfo) => item.gender)).to.not.include(Gender.Male);
+        expect(res.body.data.filter((item: User) => item.gender)).to.not.include(Gender.Male);
 
         done();
       });

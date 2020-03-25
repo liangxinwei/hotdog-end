@@ -2,9 +2,9 @@ import {Model, Table, Column} from 'sequelize-typescript';
 
 // @ts-ignore
 @Table({
-  tableName: 'user_info_test',
+  tableName: 'user',
 })
-export default class UserInfo extends Model<UserInfo> {
+export default class User extends Model<User> {
   @Column({
     comment: '自增ID',
     autoIncrement: true,

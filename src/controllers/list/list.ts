@@ -1,12 +1,12 @@
 import {Ctx, Param, Get, JsonController} from 'routing-controllers';
 import {Context} from 'koa';
-import UserInfo from '../../models/user/user-info';
+import User from '../../models/user/user';
 
 /**
  * 获取列表数据
  */
 async function filterList({gender}: { gender?: number } = {}) {
-  return UserInfo.findAll({
+  return User.findAll({
     raw: true,
     where: gender && {
       gender,

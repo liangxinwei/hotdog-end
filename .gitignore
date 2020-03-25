@@ -63,3 +63,5 @@ dist
 client-dist
 .idea
 .vscode
+
+production.js
