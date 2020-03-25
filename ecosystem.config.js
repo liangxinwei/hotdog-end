@@ -32,7 +32,7 @@ module.exports = {
       repo: 'https://github.com/liangxinwei/hotdog-backend.git',
       path: '/data/hotdog_backend',
       'ssh_options': 'StrictHostKeyChecking=no',
-      'post-deploy': 'npm install && pm2 reload ecosystem.config.js --env production'
+      'post-deploy': 'pm2 reload ecosystem.config.js --env production'
     }
   }
 };
