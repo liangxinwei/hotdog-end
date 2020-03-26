@@ -32,6 +32,15 @@ mysql> CREATE TABLE `user` (`uid` int(11) unsigned NOT NULL AUTO_INCREMENT,   `n
 npm test
 ```
 
+## 生成sequelize所有模型
+
+```bash
+npm install -g sequelize-auto
+npm install -g mysql2
+// 在对应的文件夹下执行以下命令
+sequelize-auto -h 数据库的IP地址 -d 数据库名 -u 用户名 -x 密码 -p 端口 -t 表名
+```
+
 ## todo
 1. [ ] 接入 koa session
 2. [ ] 接入 koa cors

@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=local npm run serve",
+    "serve": "NODE_ENV=production node dist/server.js",
     "build": "npm run build-ts && npm run copy-static-assets",
-    "serve": "node dist/server.js",
     "watch-node": "NODE_ENV=local nodemon dist/server.js",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
     "tslint": "tslint -c .eslintrc.js -p tsconfig.json",
     "pm2init": "pm2 deploy ecosystem.config.js production setup",
-    "deploy": "pm2 deploy production",
+    "upload": "expect script/upload.sh",
+    "deploy": "expect script/deploy.sh",
     "copy-static-assets": "ts-node copy-static-assets.ts",
     "test": "mocha -r ts-node/register test/**/*.spec.ts"
   },
@@ -66,7 +67,6 @@
     "eslint-plugin-import": "^2.17.3",
     "mocha": "^6.1.4",
     "nodemon": "^1.19.1",
-    "shelljs": "^0.8.3",
     "ts-node": "^8.2.0",
     "tslint": "^5.17.0",
     "typescript": "^3.5.1"

@@ -1,0 +1,6 @@
+/dist/
+/static/
+/script/
+/.idea/
+/.vscode/
+/test/unit/coverage/

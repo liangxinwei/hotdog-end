@@ -22,26 +22,30 @@ app.use(bodyParser());
 
 const mysqlConfig = configs.mysql as MysqlConfig;
 
-new Sequelize({
-  host: mysqlConfig.host[0],
-  database: mysqlConfig.database,
-  username: mysqlConfig.user,
-  password: mysqlConfig.password,
-  dialect: 'mysql',
-  modelPaths: [path.resolve(__dirname, `./models/${mysqlConfig.modelPath}`)],
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000,
-  },
-  define: {
-    timestamps: false,
-    freezeTableName: true
-  },
-  // operatorsAliases: false,
-  // logging: logger.info,
-  logging: console.log,
-});
+try {
+  new Sequelize({
+    host: mysqlConfig.host[0],
+    database: mysqlConfig.database,
+    username: mysqlConfig.user,
+    password: mysqlConfig.password,
+    dialect: 'mysql',
+    modelPaths: [path.resolve(__dirname, `./models/${mysqlConfig.modelPath}`)],
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
+    define: {
+      timestamps: false,
+      freezeTableName: true
+    },
+    // operatorsAliases: false,
+    // logging: logger.info,
+    logging: console.log,
+  });
+} catch (e) {
+  console.error('Unable to connect to the database:', e);
+}
 
 export default app;
