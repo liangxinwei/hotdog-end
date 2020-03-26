@@ -14,7 +14,7 @@ async function filterList({gender}: { gender?: number } = {}) {
   });
 }
 
-@JsonController('/list')
+@JsonController('/v1/list')
 export default class {
   @Get('/')
   async router(@Ctx() ctx: Context) {
