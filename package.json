@@ -6,6 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=local npm run serve",
     "serve": "NODE_ENV=production node dist/server.js",
+    "pm2:start": "pm2 start ecosystem.config.js --env production",
     "build": "npm run build-ts && npm run copy-static-assets",
     "watch-node": "NODE_ENV=local nodemon dist/server.js",
     "build-ts": "tsc",
