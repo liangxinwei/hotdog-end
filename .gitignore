@@ -63,5 +63,5 @@ dist
 client-dist
 .idea
 .vscode
-
+pre_dist/
 script/

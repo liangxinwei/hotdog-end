@@ -10,7 +10,7 @@ async function createUser({name, gender}: UserData) {
   return (await User.create({name, gender})).save();
 }
 
-@JsonController('/v1/add')
+@JsonController('/v2/add')
 export default class {
   @Get('/:name/:age/:gender')
   async router(
