@@ -6,11 +6,14 @@ import {Sequelize} from 'sequelize-typescript';
 // import views from 'koa-views';
 import bodyParser from 'koa-bodyparser';
 // import logger from './utils/logger';
+import {LoggerMiddleware} from './middlewares';
 import {MysqlConfig} from 'config';
 import {configs} from './config';
 
 const app = createKoaServer({
+  // cors: true,
   controllers: [`${__dirname}/controllers/**/*{.js,.ts}`],
+  middlewares: [LoggerMiddleware],
 });
 
 // app.use(serve(path.join(__dirname, '../static')));

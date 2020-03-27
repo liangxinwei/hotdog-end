@@ -1,7 +1,7 @@
 import {Ctx, Param, Get, JsonController} from 'routing-controllers';
 import {UserData} from 'user-info';
 import {Context} from 'koa';
-import User from '../../models/user/user';
+import User from 'src/models/user/user';
 
 /**
  * 创建一个新的用户
@@ -10,7 +10,7 @@ async function createUser({name, gender}: UserData) {
   return (await User.create({name, gender})).save();
 }
 
-@JsonController('/v2/add')
+@JsonController('/v1/add')
 export default class {
   @Get('/:name/:age/:gender')
   async router(

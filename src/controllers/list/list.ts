@@ -1,6 +1,8 @@
-import {Ctx, Param, Get, JsonController} from 'routing-controllers';
+import {Ctx, Param, Get, JsonController, UseBefore, UseInterceptor} from 'routing-controllers';
 import {Context} from 'koa';
-import User from '../../models/user/user';
+import {LoggerMiddleware} from 'src/middlewares';
+import {TestInterceptor} from 'src/interceptors';
+import User from 'src/models/user/user';
 
 /**
  * 获取列表数据
@@ -15,6 +17,8 @@ async function filterList({gender}: { gender?: number } = {}) {
 }
 
 @JsonController('/v1/list')
+@UseBefore(LoggerMiddleware)
+@UseInterceptor(TestInterceptor)
 export default class {
   @Get('/')
   async router(@Ctx() ctx: Context) {

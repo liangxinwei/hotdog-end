@@ -6,12 +6,15 @@
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "pre_dist",
+    "outDir": "dist",
     "baseUrl": ".",
     "paths": {
       "*": [
         "node_modules/*",
         "src/types/*"
+      ],
+      "src/*": [
+        "src/*"
       ]
     },
     "lib": [

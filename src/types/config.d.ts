@@ -1,3 +1,5 @@
+// 类型定义的文件规定后缀为 .d.ts
+
 export interface MysqlConfig {
   key: string;
   host: string[];
