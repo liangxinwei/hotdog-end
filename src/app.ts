@@ -1,26 +1,28 @@
 import 'reflect-metadata';
+import 'colors';
+import 'winston-daily-rotate-file';
 import path from 'path';
 import {createKoaServer} from 'routing-controllers';
 import {Sequelize} from 'sequelize-typescript';
-// import serve from 'koa-static';
-// import views from 'koa-views';
+import serve from 'koa-static';
 import bodyParser from 'koa-bodyparser';
-// import logger from './utils/logger';
-import {LoggerMiddleware} from './middlewares';
+import {logSql} from './utils/logger';
+import {ControllerLoggerMiddleware} from './middlewares';
 import {MysqlConfig} from 'config';
 import {configs} from './config';
 
 const app = createKoaServer({
-  // cors: true,
+  cors: {
+    origin: process.env.NODE_ENV === 'production' ? 'https://hotdog.liangxinwei.cn/' : 'http://localhost:7000',
+    credentials: true
+  },
   controllers: [`${__dirname}/controllers/**/*{.js,.ts}`],
-  middlewares: [LoggerMiddleware],
+  middlewares: [
+    ControllerLoggerMiddleware,
+  ],
 });
 
-// app.use(serve(path.join(__dirname, '../static')));
-// app.use(views(path.join(__dirname, './views'), {
-//   extension: 'ejs'
-// }));
-// app.use(views('../views', { map: {html: 'ejs' }}));
+app.use(serve(path.join(__dirname, '../static')));
 app.use(bodyParser());
 
 const mysqlConfig = configs.mysql as MysqlConfig;
@@ -40,12 +42,12 @@ try {
       idle: 10000,
     },
     define: {
-      timestamps: false,
+      // timestamps: false,
       freezeTableName: true
     },
     // operatorsAliases: false,
-    // logging: logger.info,
-    logging: console.log,
+    logging: logSql,
+    // logging: logger.log,
   });
 } catch (e) {
   console.error('Unable to connect to the database:', e);

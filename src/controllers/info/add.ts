@@ -1,7 +1,7 @@
 import {Ctx, Param, Get, JsonController} from 'routing-controllers';
 import {UserData} from 'user-info';
 import {Context} from 'koa';
-import User from 'src/models/user/user';
+import User from '../../models/user/user';
 
 /**
  * 创建一个新的用户

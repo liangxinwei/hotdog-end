@@ -1,5 +1,5 @@
-import LoggerMiddleware from './LoggerMiddleware';
+import ControllerLoggerMiddleware from './ControllerLoggerMiddleware';
 
 export {
-  LoggerMiddleware
+  ControllerLoggerMiddleware
 };
