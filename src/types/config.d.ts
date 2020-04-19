@@ -6,7 +6,6 @@ export interface MysqlConfig {
   user: string;
   password: string;
   database: string;
-  modelPath: string;
 }
 
 export type ConfigItem = MysqlConfig | string | string[];

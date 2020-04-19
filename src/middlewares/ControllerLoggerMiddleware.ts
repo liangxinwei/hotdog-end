@@ -1,27 +1,31 @@
 import {Middleware, KoaMiddlewareInterface} from 'routing-controllers';
+import {Context} from 'koa';
+import logger from '../utils/logger';
 
 @Middleware({type: 'before'})
 export default class ControllerLoggerMiddleware implements KoaMiddlewareInterface {
-  use(context: any, next: (err?: any) => Promise<any>): Promise<any> {
+  use(ctx: Context, next: (err?: any) => Promise<any>): Promise<any> {
     const startTime = Date.now();
-    console.log(
-      'request start. url:',
-      context.request.url,
-      ', method:',
-      context.request.method,
-      'ip:',
+    logger.info(
+      'request start. url:' +
+      ctx.request.url +
+      ', method:' +
+      ctx.request.method +
+      ', ip: ' +
       // 判断是否有反向代理 IP
-      context.request.headers['x-forwarded-for'] || context.request.headers['x-real-ip']
+      ctx.ip
+      // ctx.request.headers['x-forwarded-for'] || ctx.request.headers['x-real-ip'] || ctx.request.headers['host'],
     );
     return next().then(() => {
-      console.log(
-        'request end.   url:',
-        context.request.url, ',' +
-        ' used time:',
-        `${Date.now() - startTime}ms`.yellow
+      logger.info(
+        'request end.   url:' +
+        ctx.request.url +
+        ',' +
+        ', used time:' +
+        `${Date.now() - startTime}ms`
       );
     }).catch(e => {
-      console.error('request error:', e);
+      logger.error('request error:', e);
     });
   }
 }

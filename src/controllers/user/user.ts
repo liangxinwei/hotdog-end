@@ -28,7 +28,7 @@ async function addUser(user: UserData) {
   return (await User.create(user)).save();
 }
 
-@JsonController('/v1/list')
+@JsonController('/v1/users')
 @UseInterceptor(TestInterceptor)
 export default class {
   @Get('/')

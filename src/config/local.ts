@@ -7,6 +7,5 @@ export const configs: ConfigMap = {
     password: '12345678',
     database: 'hotdog',
     key: 'mysql',
-    modelPath: 'user',
   },
 };

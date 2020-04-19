@@ -16,6 +16,7 @@ const app = createKoaServer({
     origin: process.env.NODE_ENV === 'production' ? 'https://hotdog.liangxinwei.cn/' : 'http://localhost:7000',
     credentials: true
   },
+  // proxy: true,
   controllers: [`${__dirname}/controllers/**/*{.js,.ts}`],
   middlewares: [
     ControllerLoggerMiddleware,
@@ -24,33 +25,29 @@ const app = createKoaServer({
 
 app.use(serve(path.join(__dirname, '../static')));
 app.use(bodyParser());
+app.proxy = true;
 
 const mysqlConfig = configs.mysql as MysqlConfig;
 
-try {
-  new Sequelize({
-    host: mysqlConfig.host[0],
-    database: mysqlConfig.database,
-    username: mysqlConfig.user,
-    password: mysqlConfig.password,
-    dialect: 'mysql',
-    modelPaths: [path.resolve(__dirname, `./models/${mysqlConfig.modelPath}`)],
-    pool: {
-      max: 5,
-      min: 0,
-      acquire: 30000,
-      idle: 10000,
-    },
-    define: {
-      // timestamps: false,
-      freezeTableName: true
-    },
-    // operatorsAliases: false,
-    logging: logSql,
-    // logging: logger.log,
-  });
-} catch (e) {
-  console.error('Unable to connect to the database:', e);
-}
+export const sequelize = new Sequelize({
+  host: mysqlConfig.host[0],
+  database: mysqlConfig.database,
+  username: mysqlConfig.user,
+  password: mysqlConfig.password,
+  dialect: 'mysql',
+  models: [path.resolve(__dirname, './models/**/*.js')],
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
+  },
+  define: {
+    timestamps: false,
+    freezeTableName: true
+  },
+  // operatorsAliases: true,
+  logging: logSql,
+});
 
 export default app;
