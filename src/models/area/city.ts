@@ -18,10 +18,11 @@ export default class City extends Model<City> {
   @AllowNull(false)
   @ForeignKey(() => Province)
   @Column({
-    comment: '省份 code',
+    comment: '所属省份',
     type: DataType.STRING(16),
+    field: 'province_code',
   })
-  parent_code: string;
+  provinceCode: string;
 
   @AllowNull(false)
   @Column({

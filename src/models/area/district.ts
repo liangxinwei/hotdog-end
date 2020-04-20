@@ -1,4 +1,5 @@
 import {Model, Table, Column, ForeignKey, BelongsTo, AllowNull, HasMany, DataType} from 'sequelize-typescript';
+import Province from './province';
 import City from './city';
 import Street from './street';
 
@@ -16,12 +17,22 @@ export default class District extends Model<District> {
   code: string;
 
   @AllowNull(false)
+  @ForeignKey(() => Province)
+  @Column({
+    comment: '所属省份',
+    type: DataType.STRING(16),
+    field: 'province_code',
+  })
+  provinceCode: string;
+
+  @AllowNull(false)
   @ForeignKey(() => City)
   @Column({
-    comment: '城市 code',
+    comment: '所属城市',
     type: DataType.STRING(16),
+    field: 'city_code',
   })
-  parent_code: string;
+  cityCode: string;
 
   @AllowNull(false)
   @Column({
@@ -29,6 +40,9 @@ export default class District extends Model<District> {
     type: DataType.STRING,
   })
   name: string;
+
+  @BelongsTo(() => Province)
+  province: Province;
 
   @BelongsTo(() => City)
   city: City;
