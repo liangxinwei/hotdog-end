@@ -16,7 +16,6 @@ const app = createKoaServer({
     origin: process.env.NODE_ENV === 'production' ? 'https://hotdog.liangxinwei.cn/' : 'http://localhost:7000',
     credentials: true
   },
-  // proxy: true,
   controllers: [`${__dirname}/controllers/**/*{.js,.ts}`],
   middlewares: [
     ControllerLoggerMiddleware,
