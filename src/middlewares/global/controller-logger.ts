@@ -1,12 +1,12 @@
 import {Middleware, KoaMiddlewareInterface} from 'routing-controllers';
 import {Context} from 'koa';
-import logger from '../utils/logger';
+import {Logger} from '../../utils';
 
 @Middleware({type: 'before'})
 export default class ControllerLoggerMiddleware implements KoaMiddlewareInterface {
   use(ctx: Context, next: (err?: any) => Promise<any>): Promise<any> {
     const startTime = Date.now();
-    logger.info(
+    Logger.info(
       'request start. url:' +
       ctx.request.url +
       ', method:' +
@@ -17,15 +17,14 @@ export default class ControllerLoggerMiddleware implements KoaMiddlewareInterfac
       // ctx.request.headers['x-forwarded-for'] || ctx.request.headers['x-real-ip'] || ctx.request.headers['host'],
     );
     return next().then(() => {
-      logger.info(
+      Logger.info(
         'request end.   url:' +
         ctx.request.url +
-        ',' +
         ', used time:' +
         `${Date.now() - startTime}ms`
       );
     }).catch(e => {
-      logger.error('request error:', e);
+      Logger.error('request error:', e);
     });
   }
 }

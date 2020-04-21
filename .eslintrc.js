@@ -9,6 +9,7 @@ module.exports = {
   rules: {
     'semi': ['error', 'always'],
     'quotes': ['error', 'single'],
+    '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/no-explicit-any': 1,

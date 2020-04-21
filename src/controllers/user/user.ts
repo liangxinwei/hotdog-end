@@ -1,7 +1,7 @@
 import {Ctx, Param, Get, Post, JsonController, UseInterceptor, Body} from 'routing-controllers';
 import {UserData} from 'user-info';
 import {Context} from 'koa';
-import {TestInterceptor} from '../../interceptors';
+import LoggerInterceptor from '../../interceptors/logger';
 import User from '../../models/user/user';
 
 /**
@@ -10,6 +10,7 @@ import User from '../../models/user/user';
 async function filterList({gender}: { gender?: number } = {}) {
   return User.findAll({
     raw: true,
+    attributes: ['uid', 'name', 'age', 'gender'],
     where: gender && {
       gender,
     },
@@ -29,9 +30,9 @@ async function addUser(user: UserData) {
 }
 
 @JsonController('/v1/users')
-@UseInterceptor(TestInterceptor)
 export default class {
   @Get('/')
+  @UseInterceptor(LoggerInterceptor)
   async getAll(@Ctx() ctx: Context) {
     try {
       return {
