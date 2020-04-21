@@ -16,6 +16,9 @@
 # 请先创建项目所用的数据库：`hotdog`，项目启动之后会自动创建所需要的表
 > npm run watch-ts
 > npm run watch-node
+# 发布
+> npm run upload
+> npm run deploy
 ```
 
 ## API接口文档

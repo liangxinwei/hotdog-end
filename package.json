@@ -13,7 +13,7 @@
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
     "tslint": "tslint -c .eslintrc.js -p tsconfig.json",
-    "upload": "expect script/upload.sh",
+    "upload": "npm run build && expect script/upload.sh",
     "deploy": "expect script/deploy.sh",
     "copy-static-assets": "ts-node copy-static-assets.ts",
     "test": "mocha -r ts-node/register test/**/*.spec.ts"
