@@ -10,7 +10,7 @@ import Village from '../../models/area/village';
 async function findProvince() {
   return Province.findAll({raw: true});
 }
-console.log('test');
+
 async function findCity(provinceCode: string) {
   return City.findAll({
     raw: true,
