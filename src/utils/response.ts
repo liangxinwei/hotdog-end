@@ -1,6 +1,12 @@
 import {Context} from 'koa';
 import {Logger} from '../utils';
 
+enum ResponseCode {
+  Success = 200,
+  Failure = 201,
+  Error = 500
+}
+
 interface ErrorParam {
   ctx?: Context;
   msg?: string;
@@ -22,7 +28,7 @@ export default class {
    */
   static success(data?: any) {
     return {
-      code: 200,
+      code: ResponseCode.Success,
       data: data == null ? '' : data
     };
   }
@@ -35,7 +41,7 @@ export default class {
    */
   static successWithExtraData(data: object, extraData: object) {
     return {
-      code: 200,
+      code: ResponseCode.Success,
       data: data,
       ...extraData
     };
@@ -48,7 +54,7 @@ export default class {
    */
   static failed(msg: string) {
     return {
-      code: 201,
+      code: ResponseCode.Failure,
       msg: msg
     };
   }
@@ -62,7 +68,7 @@ export default class {
     console.error(param.ctx, param.e);
     Logger.error(param.e);
     return {
-      code: 500,
+      code: ResponseCode.Error,
       msg: param.msg || '服务器错误'
     };
   }
