@@ -1,11 +1,6 @@
 import {Context} from 'koa';
 import {Logger} from '../utils';
-
-enum ResponseCode {
-  Success = 200,
-  Failure = 201,
-  Error = 500
-}
+import {ResponseCode} from '../config';
 
 interface ErrorParam {
   ctx?: Context;

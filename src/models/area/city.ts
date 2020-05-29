@@ -2,7 +2,6 @@ import {Model, Table, Column, ForeignKey, BelongsTo, AllowNull, HasMany, DataTyp
 import Province from './province';
 import District from './district';
 
-// @ts-ignore
 @Table({
   tableName: 'city'
 })

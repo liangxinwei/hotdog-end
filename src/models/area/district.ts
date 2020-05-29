@@ -3,7 +3,6 @@ import Province from './province';
 import City from './city';
 import Street from './street';
 
-// @ts-ignore
 @Table({
   tableName: 'district'
 })

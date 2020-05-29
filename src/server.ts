@@ -1,8 +1,9 @@
 import app, {sequelize} from './app';
-import {port} from './config';
 import {Logger} from './utils';
 
 process.on('uncaughtException', Logger.error);
+
+const port = 5000;
 
 const server = app.listen(port, async () => {
   await sequelize.sync().catch((e) => {

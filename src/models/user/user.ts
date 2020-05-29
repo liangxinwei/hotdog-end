@@ -1,6 +1,5 @@
 import {Model, Table, Column, DataType} from 'sequelize-typescript';
 
-// @ts-ignore
 @Table({
   tableName: 'user',
 })

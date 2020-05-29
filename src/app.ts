@@ -8,7 +8,7 @@ import serve from 'koa-static';
 import bodyParser from 'koa-bodyparser';
 import {MysqlConfig} from 'config';
 import Logger, {logSql} from './utils/logger';
-import {configs} from './config';
+import sqlConfig from './config/sql';
 
 const app = createKoaServer({
   cors: {
@@ -24,7 +24,7 @@ app.use(serve(path.join(__dirname, '../static')));
 app.use(bodyParser());
 app.proxy = true;
 
-const mysqlConfig = configs.mysql as MysqlConfig;
+const mysqlConfig = sqlConfig.mysql as MysqlConfig;
 
 const sequelize = new Sequelize({
   host: mysqlConfig.host[0],

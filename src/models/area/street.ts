@@ -4,7 +4,6 @@ import City from './city';
 import District from './district';
 import Village from './village';
 
-// @ts-ignore
 @Table({
   tableName: 'street'
 })

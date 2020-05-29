@@ -1,0 +1,30 @@
+import {Model, Table, Column, DataType, ForeignKey, IsDate} from 'sequelize-typescript';
+import AdminUser from './admin-user';
+import Permission from './permission';
+
+@Table({
+  tableName: 'admin_user_permission_relations',
+})
+export default class AdminUserPermissionRelation extends Model<AdminUserPermissionRelation> {
+  @Column({
+    primaryKey: true,
+    autoIncrement: true,
+  })
+  id: number;
+
+  @ForeignKey(() => AdminUser)
+  @Column
+  userId: number;
+
+  @ForeignKey(() => Permission)
+  @Column
+  permissionId: number;
+
+  @IsDate
+  @Column(DataType.DATE)
+  createdAt: string;
+
+  @IsDate
+  @Column(DataType.DATE)
+  updatedAt: string;
+}

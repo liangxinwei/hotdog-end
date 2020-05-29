@@ -1,7 +1,6 @@
 import {Model, Table, Column, AllowNull, HasMany, DataType} from 'sequelize-typescript';
 import City from './city';
 
-// @ts-ignore
 @Table({
   tableName: 'province'
 })

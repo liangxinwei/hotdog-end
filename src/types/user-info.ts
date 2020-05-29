@@ -1,7 +1,7 @@
 export interface UserData {
   name: string;
-  age?: number;
   gender: number;
+  age?: number;
 }
 
 export declare type UserInfo = UserData & {
