@@ -3,7 +3,7 @@ import Role from './role';
 import Permission from './permission';
 
 @Table({
-  tableName: 'admin_user_permission_relations',
+  tableName: 'role_permission_relations',
 })
 export default class RolePermissionRelation extends Model<RolePermissionRelation> {
   @Column({
