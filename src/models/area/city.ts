@@ -19,7 +19,6 @@ export default class City extends Model<City> {
   @Column({
     comment: '所属省份',
     type: DataType.STRING(16),
-    field: 'province_code',
   })
   provinceCode: string;
 

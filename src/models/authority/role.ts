@@ -1,4 +1,4 @@
-import {Model, Table, Column, DataType, AllowNull, Default, IsDate, BelongsToMany} from 'sequelize-typescript';
+import {Model, Table, Column, DataType, AllowNull, Default, BelongsToMany} from 'sequelize-typescript';
 import AdminUser from './admin-user';
 import Permission from './permission';
 import AdminUserRoleRelation from './admin-user-role-relation';
@@ -6,6 +6,7 @@ import RolePermissionRelation from './role-permission-relation';
 
 @Table({
   tableName: 'roles',
+  timestamps: true,
 })
 export default class Role extends Model<Role> {
   @Column({
@@ -27,14 +28,6 @@ export default class Role extends Model<Role> {
 
   @Column(DataType.STRING(20))
   remark: string;
-
-  @IsDate
-  @Column(DataType.DATE)
-  createdAt: string;
-
-  @IsDate
-  @Column(DataType.DATE)
-  updatedAt: string;
 
   @BelongsToMany(() => AdminUser, () => AdminUserRoleRelation)
   users: AdminUser[];

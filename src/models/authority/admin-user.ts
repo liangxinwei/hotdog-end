@@ -1,4 +1,4 @@
-import {Model, Table, Column, DataType, Default, AllowNull, BelongsToMany, IsDate} from 'sequelize-typescript';
+import {Model, Table, Column, DataType, Default, AllowNull, BelongsToMany} from 'sequelize-typescript';
 import Role from './role';
 import Permission from './permission';
 import AdminUserRoleRelation from './admin-user-role-relation';
@@ -27,10 +27,7 @@ export default class AdminUser extends Model<AdminUser> {
   @Column(DataType.STRING(20))
   telephone: string;
 
-  @Column({
-    type: DataType.DATE,
-    field: 'last_login_time',
-  })
+  @Column(DataType.DATE)
   lastLoginTime: string;
 
   @Default(1)
@@ -39,20 +36,6 @@ export default class AdminUser extends Model<AdminUser> {
     comment: '账号是否有效',
   })
   enabled: number;                   // 0 无效；1 有效
-
-  @Column({
-    type: DataType.DATE,
-    field: 'created_at',
-    defaultValue: DataType.NOW,
-  })
-  createdAt: string;
-
-  @Column({
-    type: DataType.DATE,
-    field: 'updated_at',
-    defaultValue: DataType.NOW,
-  })
-  updatedAt: string;
 
   @BelongsToMany(() => Role, () => AdminUserRoleRelation)
   roles: Role[];

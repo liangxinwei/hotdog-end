@@ -20,7 +20,6 @@ export default class District extends Model<District> {
   @Column({
     comment: '所属省份',
     type: DataType.STRING(16),
-    field: 'province_code',
   })
   provinceCode: string;
 
@@ -29,7 +28,6 @@ export default class District extends Model<District> {
   @Column({
     comment: '所属城市',
     type: DataType.STRING(16),
-    field: 'city_code',
   })
   cityCode: string;
 

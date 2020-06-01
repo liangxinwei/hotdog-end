@@ -1,9 +1,10 @@
-import {Model, Table, Column, DataType, ForeignKey} from 'sequelize-typescript';
+import {Model, Table, Column, ForeignKey} from 'sequelize-typescript';
 import AdminUser from './admin-user';
 import Role from './role';
 
 @Table({
   tableName: 'admin_user_role_relations',
+  timestamps: true,
 })
 export default class AdminUserRoleRelation extends Model<AdminUserRoleRelation> {
   @Column({
@@ -19,10 +20,4 @@ export default class AdminUserRoleRelation extends Model<AdminUserRoleRelation> 
   @ForeignKey(() => Role)
   @Column
   roleId: number;
-
-  @Column(DataType.DATE)
-  createdAt: string;
-
-  @Column(DataType.DATE)
-  updatedAt: string;
 }

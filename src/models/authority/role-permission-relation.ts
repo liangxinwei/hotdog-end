@@ -1,9 +1,10 @@
-import {Model, Table, Column, DataType, ForeignKey, IsDate} from 'sequelize-typescript';
+import {Model, Table, Column, ForeignKey} from 'sequelize-typescript';
 import Role from './role';
 import Permission from './permission';
 
 @Table({
   tableName: 'role_permission_relations',
+  timestamps: true,
 })
 export default class RolePermissionRelation extends Model<RolePermissionRelation> {
   @Column({
@@ -19,12 +20,4 @@ export default class RolePermissionRelation extends Model<RolePermissionRelation
   @ForeignKey(() => Permission)
   @Column
   permissionId: number;
-
-  @IsDate
-  @Column(DataType.DATE)
-  createdAt: string;
-
-  @IsDate
-  @Column(DataType.DATE)
-  updatedAt: string;
 }

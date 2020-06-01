@@ -21,7 +21,6 @@ export default class Village extends Model<Village> {
   @Column({
     comment: '所属省份',
     type: DataType.STRING(16),
-    field: 'province_code',
   })
   provinceCode: string;
 
@@ -30,7 +29,6 @@ export default class Village extends Model<Village> {
   @Column({
     comment: '所属城市',
     type: DataType.STRING(16),
-    field: 'city_code',
   })
   cityCode: string;
 
@@ -39,7 +37,6 @@ export default class Village extends Model<Village> {
   @Column({
     comment: '所属区县',
     type: DataType.STRING(16),
-    field: 'district_code',
   })
   districtCode: string;
 
@@ -48,7 +45,6 @@ export default class Village extends Model<Village> {
   @Column({
     comment: '所属街道',
     type: DataType.STRING(16),
-    field: 'street_code',
   })
   streetCode: string;
 
