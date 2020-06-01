@@ -11,7 +11,7 @@
     "build": "npm run build-ts && npm run copy-static-assets",
     "watch-node": "NODE_ENV=local nodemon dist/server.js",
     "build-ts": "tsc",
-    "watch-ts": "tsc -w",
+    "watch-ts": "rm -rf dist & tsc -w",
     "tslint": "tslint -c .eslintrc.js -p tsconfig.json",
     "upload": "npm run build && expect script/upload.sh",
     "deploy": "expect script/deploy.sh",

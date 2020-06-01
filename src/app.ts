@@ -7,13 +7,13 @@ import {Sequelize} from 'sequelize-typescript';
 import serve from 'koa-static';
 import bodyParser from 'koa-bodyparser';
 import {MysqlConfig} from 'config';
-import Logger, {logSql} from './utils/logger';
 import sqlConfig from './config/sql';
+import Logger, {logSql} from './utils/logger';
 
 const app = createKoaServer({
   cors: {
     origin: process.env.NODE_ENV === 'production' ? 'https://hotdog.liangxinwei.cn/' : 'http://localhost:7000',
-    credentials: true
+    credentials: true,
   },
   controllers: [path.resolve(__dirname, './controllers/**/*.js')],
   interceptors: [path.resolve(__dirname, './interceptors/global/*.js')],
@@ -33,6 +33,7 @@ const sequelize = new Sequelize({
   password: mysqlConfig.password,
   dialect: 'mysql',
   models: [path.resolve(__dirname, './models/**/*.js')],
+  timezone: '+08:00',
   pool: {
     max: 5,
     min: 0,
@@ -43,7 +44,7 @@ const sequelize = new Sequelize({
     timestamps: false,
     freezeTableName: true,
     charset: 'utf8',
-    collate: 'utf8_general_ci'
+    collate: 'utf8_general_ci',   // 'utf8mb4_0900_ai_ci'
   },
   // operatorsAliases: true,
   logging: logSql,

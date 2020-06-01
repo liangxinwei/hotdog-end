@@ -2,7 +2,7 @@ import {Model, Table, Column, DataType, AllowNull, Default, IsDate, BelongsToMan
 import AdminUser from './admin-user';
 import Permission from './permission';
 import AdminUserRoleRelation from './admin-user-role-relation';
-import AdminUserPermissionRelation from './admin-user-permission-relation';
+import RolePermissionRelation from './role-permission-relation';
 
 @Table({
   tableName: 'roles',
@@ -39,6 +39,6 @@ export default class Role extends Model<Role> {
   @BelongsToMany(() => AdminUser, () => AdminUserRoleRelation)
   users: AdminUser[];
 
-  @BelongsToMany(() => Permission, () => AdminUserPermissionRelation)
+  @BelongsToMany(() => Permission, () => RolePermissionRelation)
   permissions: Permission[];
 }
