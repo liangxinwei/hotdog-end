@@ -6,6 +6,7 @@ import {createKoaServer} from 'routing-controllers';
 import {Sequelize} from 'sequelize-typescript';
 import serve from 'koa-static';
 import bodyParser from 'koa-bodyparser';
+// import './init/dayjs';
 import {MysqlConfig} from 'config';
 import sqlConfig from './config/sql';
 import Logger, {logSql} from './utils/logger';

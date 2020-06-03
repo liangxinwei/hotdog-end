@@ -4,6 +4,6 @@ export interface UserData {
   age?: number;
 }
 
-export declare type UserInfo = UserData & {
+export declare type User = UserData & {
   uid: number;
 }

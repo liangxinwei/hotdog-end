@@ -24,7 +24,7 @@ export default class {
   static success(data?: any) {
     return {
       code: ResponseCode.Success,
-      data: data == null ? '' : data
+      data: data == null ? {} : data
     };
   }
 

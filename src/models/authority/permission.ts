@@ -29,6 +29,6 @@ export default class Permission extends Model<Permission> {
   @BelongsToMany(() => AdminUser, () => AdminUserPermissionRelation)
   users: AdminUser[];
 
-  // @BelongsToMany(() => Role, () => RolePermissionRelation)
-  // roles: Role[];
+  @BelongsToMany(() => Role, () => RolePermissionRelation)
+  roles: Role[];
 }

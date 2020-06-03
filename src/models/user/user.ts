@@ -1,7 +1,7 @@
 import {Model, Table, Column, DataType} from 'sequelize-typescript';
 
 @Table({
-  tableName: 'user',
+  tableName: 'users',
   timestamps: true,
 })
 export default class User extends Model<User> {

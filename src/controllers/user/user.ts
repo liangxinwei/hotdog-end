@@ -1,6 +1,7 @@
 import {Ctx, Param, Get, Post, JsonController, UseInterceptor, Body} from 'routing-controllers';
-import {UserData} from 'user-info';
+import {UserData} from 'db/user';
 import {Context} from 'koa';
+import {Response} from '../../utils';
 import LoggerInterceptor from '../../interceptors/logger';
 import User from '../../models/user/user';
 
@@ -17,14 +18,6 @@ async function filterList({gender}: { gender?: number } = {}) {
   });
 }
 
-async function findOneUser(name: string) {
-  return await User.findOne({
-    where: {
-      name
-    }
-  });
-}
-
 async function addUser(user: UserData) {
   return (await User.create(user)).save();
 }
@@ -35,16 +28,10 @@ export default class {
   @UseInterceptor(LoggerInterceptor)
   async getAll(@Ctx() ctx: Context) {
     try {
-      return {
-        code: 200,
-        data: await filterList(),
-      };
+      const res = await filterList();
+      return Response.success(res);
     } catch (e) {
-      console.error(ctx, e);
-      return {
-        code: 500,
-        message: '服务器错误',
-      };
+      return Response.error({ctx, e});
     }
   }
 
@@ -52,24 +39,12 @@ export default class {
   async getAllByGender(@Ctx() ctx: Context, @Param('gender') gender: number) {
     try {
       if (!gender) {
-        return {
-          code: 401,
-          message: '缺少参数',
-        };
+        return Response.failed('缺少参数: gender');
       }
-
-      return {
-        code: 200,
-        data: await filterList({
-          gender,
-        }),
-      };
+      const res = await filterList({gender});
+      return Response.success(res);
     } catch (e) {
-      console.error(ctx, e);
-      return {
-        code: 500,
-        message: '服务器错误',
-      };
+      return Response.error({ctx, e});
     }
   }
 
@@ -89,15 +64,9 @@ export default class {
           ...user,
         });
       });
-      return {
-        code: 200,
-      };
+      return Response.success();
     } catch (e) {
-      console.error(ctx, e);
-      return {
-        code: 500,
-        message: '服务器错误',
-      };
+      return Response.error({ctx, e});
     }
   }
 }

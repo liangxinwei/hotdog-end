@@ -1,6 +1,7 @@
 import {Model, Table, Column, ForeignKey} from 'sequelize-typescript';
 import Role from './role';
 import Permission from './permission';
+import AdminUser from './admin-user';
 
 @Table({
   tableName: 'role_permission_relations',
@@ -20,4 +21,8 @@ export default class RolePermissionRelation extends Model<RolePermissionRelation
   @ForeignKey(() => Permission)
   @Column
   permissionId: number;
+
+  @ForeignKey(() => AdminUser)
+  @Column
+  userId: number;
 }
