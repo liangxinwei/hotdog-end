@@ -11,7 +11,7 @@ export default class {
   @Get()
   async getRoles(@Ctx() ctx: Context) {
     try {
-      const res = await Role.findAll({
+      const res: RoleInfo[] = await Role.findAll({
         raw: true,
         attributes: {
           exclude: ['status']
@@ -33,6 +33,7 @@ export default class {
         return Response.failed('缺少参数：role_id');
       }
       const role: RoleInfo = await Role.findOne({raw: true, where: {id}});
+      // const role: RoleInfo = await Role.findByPk(id);
       if (role) {
         return Response.success(role);
       } else {
@@ -50,7 +51,7 @@ export default class {
         return Response.failed('缺少参数：role_id');
       }
       const role: RoleInfo = await Role.findOne({raw: true, where: {id}});
-      if (role) {
+      if (role && role.status !== 0) {
         await Role.update({status: 0}, {where: {id: role.id}});
         return Response.success('删除成功');
       } else {
@@ -64,7 +65,7 @@ export default class {
   @Post()
   async addRole(@Ctx() ctx: Context, @Body() role: RoleData) {
     try {
-      const existedRole: Role = await Role.findOne({
+      const existedRole: RoleInfo = await Role.findOne({
         raw: true,
         where: {
           name: role.name
@@ -73,9 +74,10 @@ export default class {
       if (existedRole) {
         return Response.failed('要创建的角色已经存在');
       }
-      const newRole = await Role.create(role);
-      // const newRole = new Role(role);
-      newRole.save();
+      // 使用.build()创建的实例需要显式调用.save()存储到数据库中，而.create()可以忽略了这一要求，并在调用后自动存储实例的数据。
+      const newRole: RoleInfo = await Role.create(role);
+      // const newRole: RoleInfo = new Role(role);
+      // newRole.save();
       return Response.success(newRole);
     } catch (e) {
       return Response.error({ctx, e});
