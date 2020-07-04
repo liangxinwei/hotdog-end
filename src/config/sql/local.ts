@@ -4,7 +4,7 @@ export const configs: ConfigMap = {
   mysql: {
     host: ['127.0.0.1'],
     user: 'root',
-    password: '12345678',
+    password: '123456',
     database: 'hotdog',
     key: 'mysql',
   },
