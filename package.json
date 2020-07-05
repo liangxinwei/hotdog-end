@@ -13,7 +13,7 @@
     "build-ts": "tsc",
     "watch-ts": "rm -rf dist & tsc -w",
     "tslint": "tslint -c .eslintrc.js -p tsconfig.json",
-    "deploy": "script/deploy.sh",
+    "deploy": "./script/deploy.sh",
     "test": "mocha -r ts-node/register test/**/*.spec.ts"
   },
   "repository": {
