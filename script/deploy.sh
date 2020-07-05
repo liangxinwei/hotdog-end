@@ -36,7 +36,7 @@ scp ./package.json "$remoteIP:$remotePath" || exit 1
 printSuccessfulMessage "upload file package.json"
 scp -r ./dist/ "$remoteIP:$remotePath" || exit 1
 printSuccessfulMessage "upload dir dist"
-#[[ ! "test1.sh" ]] || { echo "123"; exit 1; }
+##[[ ! "./script/production.js" ]] || { echo "123"; exit 1; }
 scp ./script/production.js "$remoteIP:$remotePath/dist/config" || exit 1
 printSuccessfulMessage "upload file production.js"
 
@@ -45,4 +45,6 @@ echo 'Installing node_modules ...'
 yarn install || exit 1
 
 # step 4: start serve
-ssh $remoteIP "$remotePath/start.sh"
+ssh $remoteIP "/data/scripts/start.sh"
+
+printSuccessfulMessage "Deploy branch $branch"
