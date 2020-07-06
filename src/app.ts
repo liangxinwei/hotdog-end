@@ -63,4 +63,4 @@ export {
   sequelize
 };
 
-export default app
+export default app;
