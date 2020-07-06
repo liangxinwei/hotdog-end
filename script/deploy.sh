@@ -18,7 +18,7 @@ echo -e "Deploying branch \033[33m$branch\033[0m."
 
 # step 0: check for uncommitted changes
 git status
-if [[ !(-z $(git status -s)) ]];
+if [[ ! (-z $(git status -s)) ]];
 then
   echo -e "\033[31m !! Stash or commit your changes first. \033[0m"
   exit 1
