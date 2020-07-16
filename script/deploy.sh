@@ -40,11 +40,9 @@ printSuccessfulMessage "upload dir dist"
 scp ./script/production.js "$remoteIP:$remotePath/dist/config" || exit 1
 printSuccessfulMessage "upload file production.js"
 
-# step 3: update node_modules
-echo 'Installing node_modules ...'
-yarn install || exit 1
-
-# step 4: start serve
-ssh $remoteIP "/data/scripts/start.sh"
-
+# step 3: start serve
+if [[ ! (-z $(ssh $remoteIP "/data/scripts/hotdog_backend.start.sh")) ]]; then
+  echo -e "\033[31m Deploy branch $branch failed. \033[0m"
+  exit 1
+fi
 printSuccessfulMessage "Deploy branch $branch"
