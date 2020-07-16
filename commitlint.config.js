@@ -1,17 +1,13 @@
-
-// see file ./GIT_COMMIT.md
 const types = [
   'feat',
-  'update',
-  'remove',
-  'fix',
   'ci',
   'docs',
-  'perf',
+  'remove',
+  'fix',
+  'update',
   'refactor',
   'test',
   'revert',
-  'chore',
 ];
 
 module.exports = {

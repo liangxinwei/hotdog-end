@@ -15,16 +15,20 @@
     "lint": "yarn lint:eslint && yarn lint:tsc",
     "lint:eslint": "eslint ./src --ext .ts,.tsx --color --quiet --fix",
     "lint:tsc": "tsc --noEmit",
+    "build:docs": "node docs/generate-docs.mjs",
     "deploy": "./script/deploy.sh",
     "test": "mocha -r ts-node/register test/**/*.spec.ts"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/liangxinwei/hotdog-backend"
   },
   "keywords": [],
-  "author": "liangxinwie@spacebox.fun",
-  "license": "ISC",
+  "author": "sivan.shanghai@gmail.com",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "dependencies": {
     "colors": "^1.4.0",
     "consolidate": "^0.15.1",
@@ -73,19 +77,17 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-import-resolver-typescript": "^1.1.1",
     "eslint-plugin-import": "^2.17.3",
+    "extract-comments": "^1.1.0",
+    "glob": "^7.1.6",
     "husky": "^4.2.5",
+    "json2md": "^1.7.0",
     "lint-staged": "^10.2.11",
     "mocha": "^6.1.4",
     "nodemon": "^1.19.1",
     "prettier": "^2.0.5",
+    "shelljs": "^0.8.4",
     "ts-node": "^8.2.0",
     "tslint": "^5.17.0",
     "typescript": "^3.5.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   }
 }
