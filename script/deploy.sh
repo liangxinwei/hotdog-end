@@ -10,11 +10,7 @@ branch=$(git rev-parse --abbrev-ref HEAD)
 remoteIP="root@111.229.70.117"
 remotePath="/data/hotdog_backend"
 
-printSuccessfulMessage() {
-  echo -e "\033[32m $1 successfully. \033[0m"
-}
-
-echo -e "Deploying branch \033[33m$branch\033[0m."
+echo -e "Start deploying branch \033[33m$branch\033[0m."
 
 # step 0: check for uncommitted changes
 git status
@@ -28,21 +24,24 @@ fi
 echo 'Pushing branch to remote ...'
 git push || exit 1
 
-# step 2: upload assets
-npm run build
-cp -r src/public dist
-printSuccessfulMessage "copy dir src/public to dist"
-scp ./package.json "$remoteIP:$remotePath" || exit 1
-printSuccessfulMessage "upload file package.json"
-scp -r ./dist/ "$remoteIP:$remotePath" || exit 1
-printSuccessfulMessage "upload dir dist"
-##[[ ! "./script/production.js" ]] || { echo "123"; exit 1; }
-scp ./script/production.js "$remoteIP:$remotePath/dist/config" || exit 1
-printSuccessfulMessage "upload file production.js"
-
-# step 3: start serve
-if [[ ! (-z $(ssh $remoteIP "/data/scripts/hotdog_backend.start.sh")) ]]; then
-  echo -e "\033[31m Deploy branch $branch failed. \033[0m"
+# step 2: push current branch to remote
+if [[ ! (-f ./script/production.js) ]];
+then
+  echo -e "\033[31m There is no file ./script/production.js. \033[0m"
   exit 1
 fi
-printSuccessfulMessage "Deploy branch $branch"
+
+# step 3: upload assets
+npm run build
+cp -r src/public dist
+  echo -e "\033[32m copy dir src/public to dist successfully. \033[0m"
+scp ./package.json "$remoteIP:$remotePath" || exit 1
+  echo -e "\033[32m upload file package.json successfully. \033[0m"
+scp -r ./dist/ "$remoteIP:$remotePath" || exit 1
+  echo -e "\033[32m upload dir dist successfully. \033[0m"
+scp ./script/production.js "$remoteIP:$remotePath/dist/config" || exit 1
+  echo -e "\033[32m upload file production.js successfully. \033[0m"
+
+# step 4: start serve
+# here is local file, also you can execute server file such as `ssh $remoteIP "/data/scripts/hotdog_backend.start.sh"`
+ssh $remoteIP -C "/bin/bash" < "script/hotdog_backend.start.sh"
